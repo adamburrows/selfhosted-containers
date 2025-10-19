@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    hostname: gitlab.home.local
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-data:/var/opt/gitlab
+      - ~/gitlab/gitlab.rb:/etc/gitlab/gitlab.rb:Z
+      - ~/gitlab/ssl:/etc/gitlab/ssl:Z
+      - ~/gitlab/trusted-certs:/etc/gitlab/trusted-certs:Z
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        from_file "/etc/gitlab/gitlab.rb"
+
+volumes:
+  gitlab-config:
+  gitlab-data:
