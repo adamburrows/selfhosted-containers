@@ -13,9 +13,9 @@ podman run -d \
 --name portainer \
 --restart=always \
 --privileged \
--v /run/user/501/podman/podman.sock:/var/run/docker.sock \
+-v /run/podman/podman.sock:/var/run/docker.sock \
 -v portainer_data:/data \
 portainer/portainer-ce:lts
 ```
 
-Launch the UI from http://localhost:8000.
+Launch the UI from https://localhost:9443.
