@@ -9,6 +9,7 @@ It supports HTTPS traffic with **self-signed SSL certificates** or your own trus
 
 Clone this repository and create your own directories for the SSL encryption. Your structure will look like this:
 
+```bash
 gitlab/
 ├── podman-compose.yaml
 ├── gitlab.rb
@@ -17,6 +18,7 @@ gitlab/
     ├── gitlab.home.local.key
 └── trusted-certs/
     └── rootCA.pem
+```
 
 ---
 
