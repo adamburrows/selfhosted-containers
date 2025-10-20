@@ -1,0 +1,10 @@
+# Ignore SSL certs and keys
+*.crt
+*.cert
+*.key
+*.pem
+*.csr
+*.srl
+
+# Ignore OpenSSL CA database hash files
+*.0
