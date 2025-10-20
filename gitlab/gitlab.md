@@ -1,20 +1,22 @@
 # GitLab Demo Deployment
 
 This demo runs a **self-hosted GitLab instance** locally using **Podman or Docker Compose**.  
+
 It supports HTTPS traffic with **self-signed SSL certificates** or your own trusted CA. I also add a WLAN IP Address to my certificate as a SAN so that my other devices on my home network can access the instance.
 
 ---
 
 ## Directory Structure
 
-Clone this repository and create your own directories for the SSL encryption. Your structure will look like this:
+Clone this repository and create your own directories for the SSL encryption. Your structure will look something like this:
 
 ```bash
 gitlab/
 ├── podman-compose.yaml
 ├── gitlab.rb
+├── gitlab-ext.cnf
 ├── ssl/
-    ├── gitlab.home.local.crt
+    ├── gitlab.home.local.crt 
     ├── gitlab.home.local.key
 └── trusted-certs/
     └── rootCA.pem
@@ -27,60 +29,46 @@ gitlab/
 ### Create a root CA key and certificate
 
 ```bash
-openssl genrsa -out rootCA.key 4096
+openssl genrsa -out trusted-certs/rootCA.key 4096
 
-openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 3650 -out rootCA.pem \
-  -subj "/C=US/ST=Local/L=Local/O=LocalDev/CN=Local Root CA"
+openssl req -x509 -new -nodes -sha256 -days 365 \
+-key trusted-certs/rootCA.key \
+-out trusted-certs/rootCA.pem \
+-subj "/C=US/ST=Local/L=Local/O=LocalDev/CN=Local Root CA"
 ```
 
 ### Create the server key and CSR
 
 ```bash
-openssl genrsa -out gitlab.home.local.key 2048
+openssl genrsa -out ssl/gitlab.home.local.key 2048
 
 openssl req -new \
--key gitlab.home.local.key \
--out gitlab.home.local.csr \
+-key ssl/gitlab.home.local.key \
+-out ssl/gitlab.home.local.csr \
 -subj "/C=US/ST=Local/L=Local/O=LocalDev/CN=gitlab.home.local"
-```
-
-### Create a config for SANs (gitlab-ext.cnf)
-
-```bash
-cat > gitlab-ext.cnf <<EOF
-authorityKeyIdentifier=keyid,issuer
-basicConstraints=CA:FALSE
-keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
-extendedKeyUsage = serverAuth
-subjectAltName = @alt_names
-
-[alt_names]
-DNS.1 = gitlab.home.local
-IP.1 = 192.168.1.192
-EOF
 ```
 
 ### Sign the server cert with the root CA
 
 ```bash
 openssl x509 -req -days 825 -sha256 \
--in gitlab.home.local.csr \
--CA rootCA.pem \
--CAkey rootCA.key \
--CAcreateserial \
--out gitlab.home.local.crt \
+-in ssl/gitlab.home.local.csr \
+-CA trusted-certs/rootCA.pem \
+-CAkey trusted-certs/rootCA.key \
+-CAserial trusted-certs/rootCA.srl \
+-out ssl/gitlab.home.local.crt \
 -extfile gitlab-ext.cnf
 ```
 
 ### Create the full chain
 ```bash
-cat gitlab.home.local.crt rootCA.pem > fullchain.crt
+cat ssl/gitlab.home.local.crt trusted-certs/rootCA.pem > ssl/fullchain.crt
 ```
 
 ### Verify the chain is valid
 
 ```bash
-openssl verify -CAfile rootCA.pem fullchain.crt
+openssl verify -CAfile trusted-certs/rootCA.pem ssl/fullchain.crt
 ```
 
 ---
