@@ -2,7 +2,7 @@
 
 This demo showcases how to deploy a local **ConvertX** container for private, file conversions. No more ads or daily limits.
 
-- **ConvertX** is a self-hosted online file converter that supports over a thousand different formats. 
+**ConvertX** is a self-hosted online file converter that supports over a thousand different formats. 
 
 ---
 
@@ -12,9 +12,11 @@ This demo showcases how to deploy a local **ConvertX** container for private, fi
 podman-compose up -d
 ```
 
-Open http://localhost:3000 in your web browser and create an account with any email and password, e.g. user:password = admin@example.com:admin.
+Open http://localhost:3000 in your web browser and create an account with any dummy email and password. It's local so it doesn't matter!
 
-## Converting Files
+---
+
+## Demo - Converting Files
 
 1. Upload the file.
 ![Upload File](images/step1.png)

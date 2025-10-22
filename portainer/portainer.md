@@ -1,10 +1,12 @@
 # Portainer Demo
 
-A simple demo showing how to run **Portainer CE**, a lightweight container management UI, using **Podman** on **macOS** with apple silicon.
+A simple demo showing how to run **Portainer CE** on macOS with apple silicon.
+
+**Portainer** is a lightweight, open-source management tool that provides a user-friendly web interface for deploying, managing, and monitoring containerized applications across Docker, Podman, and Kubernetes environments. 
 
 ---
 
-## Run Command
+## Deploy the container
 
 ```bash
 podman run -d \
@@ -19,3 +21,9 @@ portainer/portainer-ce:lts
 ```
 
 Launch the UI from https://localhost:9443.
+
+---
+
+## Demo
+
+coming soon

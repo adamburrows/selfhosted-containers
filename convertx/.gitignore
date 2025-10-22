@@ -1,2 +1,4 @@
 #Prevent data from being committed
 data/*
+#Maintain directory structure
+!data/.gitkeep

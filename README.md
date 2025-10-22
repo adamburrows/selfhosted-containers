@@ -6,15 +6,10 @@ This repo is designed for developers, solution architects, and learners who want
 
 ---
 
-## Prerequisites
-- Basic understanding of container management concepts (images, containers, volumes, networking).
-- Podman or Docker engine installed.
-
-| Container  | Demo |
+| Container | Demo |
 |------------|--------------|
-| ConvertX   | File Conversions             |
+| ConvertX   | File Conversions including text, audio, and video             |
 | GitLab     | TBD             |
 | Kafka      |  TBD            |
 | Keycloak   |  TBD            |
 | Portainer  | Container management in the browser similar to Podman/Docker Desktop            |
-

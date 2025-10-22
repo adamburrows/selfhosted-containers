@@ -2,21 +2,20 @@
 
 This repository demonstrates running **Keycloak** with a **PostgreSQL backend**.
 
+**Keycloak** is an open-source identity and access management solution that provides features like single sign-on (SSO), user federation, multi-factor authentication, and fine-grained authorization for modern applications and services using standard protocols such as OpenID Connect, OAuth 2.0, and SAML.
+
 ---
 
-## Features
-
-- Keycloak 23.x with development mode enabled
-- PostgreSQL 15 as the database
-- Metrics and health checks enabled
-- Admin user preconfigured (`admin/admin`)
-- Easy to start and stop using Podman Compose or Docker Compose
-- Persistent database using named volumes
-
-## Run the container
+## Deploy the container
 
 ```bash
 podman-compose up -d
 ```
 
 Open http://localhost:8080 in your web browser and login wth user:pass = admin:admin.
+
+---
+
+## Demo
+
+coming soon

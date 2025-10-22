@@ -1,14 +1,10 @@
-# GitLab Demo Deployment
+# GitLab Demo
 
-This demo runs a **self-hosted GitLab instance** locally using **Podman or Docker Compose**.  
-
-It supports HTTPS traffic with **self-signed SSL certificates** or your own trusted CA. I also add a WLAN IP Address to my certificate as a SAN so that my other devices on my home network can access the instance.
+This demo runs a **self-hosted GitLab instance** locally. It supports HTTPS traffic with self-signed SSL certificates or your own trusted CA. I also add a WLAN IP Address to my certificate as a SAN so that my other devices on my home network can access the instance.
 
 ---
 
 ## Directory Structure
-
-Clone this repository and create your own directories for the SSL encryption. Your structure will look something like this:
 
 ```bash
 gitlab/
@@ -24,7 +20,7 @@ gitlab/
 
 ---
 
-## Generate the Root CA and certificate-key pair.
+## Generate the Root CA and certificate-key pair
 
 ### Create a root CA key and certificate
 
@@ -73,7 +69,7 @@ openssl verify -CAfile trusted-certs/rootCA.pem ssl/fullchain.crt
 
 ---
 
-## Run the container
+## Deploy the container
 
 ```bash
 podman-compose up -d
@@ -94,3 +90,9 @@ You can get the initial admin password from the container:
 ```bash
 podman exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
 ```
+
+---
+
+## Demo
+
+coming soon

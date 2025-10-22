@@ -7,10 +7,16 @@ This demo deploys a lightweight **Apache Kafka** environment using **KRaft mode*
 
 ---
 
-## Run the container
+## Deploy the container
 
 ```bash
 podman-compose up -d
 ```
 
 Open http://localhost:9000 in your web browser to create topics and view/search messages.
+
+---
+
+## Demo
+
+coming soon
