@@ -9,7 +9,7 @@ This repo is designed for developers, solution architects, and learners who want
 | Container | Demo |
 |------------|--------------|
 | ConvertX   | File Conversions including text, audio, and video             |
-| Elasticsearch/Kibana     | TBD             |
+| ELK     | TBD             |
 | GitLab     | TBD             |
 | Kafka      |  TBD            |
 | Keycloak   |  TBD            |
